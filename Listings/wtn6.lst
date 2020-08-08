@@ -1,0 +1,410 @@
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE WTN6
+OBJECT MODULE PLACED IN .\Objects\wtn6.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE WTN6\wtn6.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\WTN6) DEBUG OBJECTEXTEND P
+                    -RINT(.\Listings\wtn6.lst) OBJECT(.\Objects\wtn6.obj)
+
+line level    source
+
+   1          #include "wtn6.h"
+   2          
+   3          /*
+   4           *@brief                1微秒延时基础函数
+   5           *                              STC-ISP软件生成
+   6           *@param[in]    NULL
+   7           *@author               MrWeng
+   8           *@date                 2020-8-7
+   9           */
+  10          void Delay1us()         //@11.0592MHz
+  11          {
+  12   1              unsigned char i;
+  13   1      
+  14   1              _nop_();
+  15   1              _nop_();
+  16   1              i = 1;
+  17   1              while (--i);
+  18   1      }
+  19          
+  20          /*
+  21           *@brief                微秒延时函数
+  22           *                              
+  23           *@param[in]    us：需要延时的微秒数
+  24           *@author               MrWeng
+  25           *@date                 2020-8-7
+  26           */
+  27          void Delay_us(unsigned short int us)
+  28          {
+  29   1              unsigned short int i;
+  30   1              for(i=0;i<us;i++)
+  31   1                      Delay1us();
+  32   1      }
+  33          
+  34          /*
+  35           *@brief                1毫秒延时基础函数
+  36           *                              STC-ISP软件生成
+  37           *@param[in]    NULL
+  38           *@author               MrWeng
+  39           *@date                 2020-8-7
+  40           */
+  41          void Delay1ms()         //@11.0592MHz
+  42          {
+  43   1              unsigned char i, j;
+  44   1      
+  45   1              i = 15;
+  46   1              j = 90;
+  47   1              do
+  48   1              {
+  49   2                      while (--j);
+  50   2              } while (--i);
+  51   1      }
+  52          
+  53          /*
+  54           *@brief                毫秒延时函数
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 2   
+
+  55           *                              
+  56           *@param[in]    ms：需要延时的毫秒数
+  57           *@author               MrWeng
+  58           *@date                 2020-8-7
+  59           */
+  60          void Delay_ms(unsigned short int ms)
+  61          {
+  62   1              unsigned short int i;
+  63   1              for(i=0;i<ms;i++)
+  64   1                      Delay1ms();
+  65   1      }
+  66          
+  67          /*
+  68           *@brief                WTN6 1线串口通信函数基础函数
+  69           *                              必须严格按照时序通信
+  70           *@param[in]    Send_DATA：需要发送的的内容的地址，查看头文件
+  71           *@author               MrWeng
+  72           *@date                 2020-8-7
+  73           */
+  74          void WTN6_Line_1(unsigned char Send_DATA)
+  75          {
+  76   1              unsigned char S_DATA,j;
+  77   1              bit B_DATA;
+  78   1              S_DATA =Send_DATA;
+  79   1              WNT6_DATA=0;
+  80   1              Delay_ms(5);            //延时5毫秒                     
+  81   1              B_DATA = S_DATA&0X01;
+  82   1              for(j=0;j<8;j++) 
+  83   1              { 
+  84   2                      if(B_DATA == 1) 
+  85   2              { 
+  86   3                      WNT6_DATA = 1; 
+  87   3                      Delay_us(600); //延时 600us 
+  88   3                      WNT6_DATA = 0; 
+  89   3                      Delay_us(200); //延时 200us 
+  90   3              } 
+  91   2              else 
+  92   2              { 
+  93   3                      WNT6_DATA = 1; 
+  94   3                      Delay_us(200); //延时 200us 
+  95   3                      WNT6_DATA = 0; 
+  96   3                      Delay_us(600); //延时 600us 
+  97   3              } 
+  98   2                      S_DATA = S_DATA>>1; 
+  99   2                      B_DATA = S_DATA&0X01; 
+ 100   2              } 
+ 101   1                      WNT6_DATA = 1;
+ 102   1      }
+ 103          
+ 104          /*
+ 105           *@brief                播报数字                        
+ 106           *@param[in]    Num[]：需要播报的数字
+ 107           *                              Len      ：数字长度     
+ 108           *@author               MrWeng
+ 109           *@date                 2020-8-7
+ 110           */
+ 111          void WTN6_Num(unsigned char Num[],int Len)
+ 112          {
+ 113   1              int i;
+ 114   1              for(i=0;i<Len;i++)
+ 115   1                      {       
+ 116   2                              Delay_ms(500);                  //延时1秒
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 3   
+
+ 117   2                              WTN6_Line_1(Num[i]);
+ 118   2                              Delay_ms(500);
+ 119   2                      }
+ 120   1      }
+ 121          /*
+ 122           *@brief                播报温度        
+ 123           *                              只支持小数点后1位，播报内容为“温度XX点X度”
+ 124           *@param[in]    Num[]：需要播报的数字，最多3位，小数点不用包含，
+ 125           *                          例如23.8度，为Num[]={0x02,0x03,0x08}                
+ 126           *@author               MrWeng
+ 127           *@date                 2020-8-7
+ 128           */
+ 129          void WTN6_Temp(unsigned char Num[])
+ 130          {
+ 131   1              WTN6_Temp_Type temp;                                            //温度
+ 132   1              WTN6_Symbol_Type Celsius,Dot;                      //摄氏度,点
+ 133   1              
+ 134   1              temp    =  WTN6_TH_Temp;        
+ 135   1              Celsius =  WTN6_S_TC;   
+ 136   1              Dot             =  WTN6_S_D;
+ 137   1              
+ 138   1              //格式：温度 23.5度
+ 139   1              Delay_ms(1000);                                 
+ 140   1              WTN6_Line_1(temp);                                                      //播报温度
+ 141   1              
+ 142   1              Delay_ms(1500);                                 
+ 143   1              WTN6_Line_1(Num[0]);                                            //温度十位
+ 144   1              
+ 145   1              Delay_ms(1000);                                 
+ 146   1              WTN6_Line_1(Num[1]);                                            //温度个位
+ 147   1              
+ 148   1              Delay_ms(1000);                                 
+ 149   1              WTN6_Line_1(Dot);                                                       //播报点
+ 150   1              
+ 151   1              Delay_ms(1000);                 
+ 152   1              WTN6_Line_1(Num[2]);                                            //温度小数位
+ 153   1              
+ 154   1              Delay_ms(1000);                 
+ 155   1              WTN6_Line_1(Celsius);                                           //播报度
+ 156   1      }
+ 157          
+ 158          /*
+ 159           *@brief                播报湿度
+ 160           *                              只支持小数点后1位，播报内容为“湿度百分之XX”
+ 161           *@param[in]    Num[]：需要播报的数字，最多3位，小数点不用包含，
+ 162           *                          例如60.8%，为Num[]={0x06,0x00,0x08}
+ 163           *@author               MrWeng
+ 164           *@date                 2020-8-7
+ 165           */
+ 166          void WTN6_Hump(unsigned char Num[])
+ 167          {
+ 168   1              WTN6_Temp_Type hum;                                                     //湿度
+ 169   1              WTN6_Symbol_Type Per_Cent,Dot;                          //百分之,点
+ 170   1              
+ 171   1              hum              = WTN6_TH_Hum;
+ 172   1              Dot              = WTN6_S_D;
+ 173   1              Per_Cent = WTN6_S_TH;
+ 174   1              
+ 175   1              //格式：温度 23.5%
+ 176   1              Delay_ms(1000);                                 
+ 177   1              WTN6_Line_1(hum);                                                       //播报湿度
+ 178   1              
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 4   
+
+ 179   1              Delay_ms(1500);                 
+ 180   1              WTN6_Line_1(Per_Cent);                                          //播报百分之
+ 181   1              
+ 182   1              Delay_ms(1500);                                 
+ 183   1              WTN6_Line_1(Num[0]);                                            //温度十位
+ 184   1              
+ 185   1              Delay_ms(1000);                                 
+ 186   1              WTN6_Line_1(Num[1]);                                            //温度个位
+ 187   1              
+ 188   1              Delay_ms(1000);                                 
+ 189   1              WTN6_Line_1(Dot);                                                       //播报点
+ 190   1              
+ 191   1              Delay_ms(1000);                 
+ 192   1              WTN6_Line_1(Num[2]);                                            //温度小数位    
+ 193   1      }
+ 194          
+ 195          /*
+ 196           *@brief                来电铃声，响铃声（音乐形式）                    
+ 197           *@param[in]    NULLL
+ 198           *@author               MrWeng
+ 199           *@date                 2020-8-7
+ 200           */
+ 201          void WTN6_Ring(void)
+ 202          {
+ 203   1              WTN6_Phone_Type ring;
+ 204   1              ring = WTN6_P_ICM;
+ 205   1              Delay_ms(1000);                 
+ 206   1              WTN6_Line_1(ring);                                              
+ 207   1              Delay_ms(1000);                         
+ 208   1      }       
+ 209          
+ 210          /*
+ 211           *@brief                播报来电
+ 212           *                              播报内容为“来电”
+ 213           *@param[in]    NULL
+ 214           *@author               MrWeng
+ 215           *@date                 2020-8-7
+ 216           */
+ 217          void WTN6_InCall(void)
+ 218          {
+ 219   1              WTN6_Phone_Type ring;
+ 220   1              ring = WTN6_P_IC;
+ 221   1              Delay_ms(500);                  
+ 222   1              WTN6_Line_1(ring);                                              
+ 223   1              Delay_ms(1000);                         
+ 224   1      }       
+ 225          
+ 226          /*
+ 227            *@brief               播报日期
+ 228           *                              播报内容为“今天XXXX年X月X日”
+ 229           *@param[in]    Date：需要播报的日期
+ 230           *                              例如：2020年8月18日，Date[]={0x02,0x00,0x02,0x00,0x00,0x08,0x01,0x08};
+ 231           *@author               MrWeng
+ 232           *@date                 2020-8-7
+ 233           */
+ 234          void WTN6_ReportDate(unsigned char Date[])                                              
+ 235          {
+ 236   1      //      unsigned char Year_Num[4],Month_Num[2],Day_Num[2];
+ 237   1              int i;
+ 238   1              
+ 239   1              WTN6_Date_Type Today,Year,Month,Day;
+ 240   1              Today = WTN6_D_TD;
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 5   
+
+ 241   1              Year  = WTN6_D_Y;
+ 242   1              Month = WTN6_D_M;
+ 243   1              Day   = WTN6_D_D;
+ 244   1              
+ 245   1              Delay_ms(1000);                 
+ 246   1              WTN6_Line_1(Today);
+ 247   1              Delay_ms(1000);
+ 248   1              
+ 249   1      //播报年        
+ 250   1              for(i=0;i<4;i++)
+ 251   1              {       
+ 252   2                      Delay_ms(500);                  
+ 253   2                      WTN6_Line_1(Date[i]);
+ 254   2                      Delay_ms(500);
+ 255   2              }
+ 256   1              
+ 257   1              Delay_ms(500);                  
+ 258   1              WTN6_Line_1(Year);
+ 259   1              Delay_ms(1000);
+ 260   1      //播报月        
+ 261   1              if(Date[4] == 0x01)
+ 262   1              {
+ 263   2                      Delay_ms(1000);                 
+ 264   2                      WTN6_Line_1(Date[4]);
+ 265   2                      
+ 266   2                      Delay_ms(1000);
+ 267   2                      WTN6_Line_1(Date[5]);
+ 268   2                      
+ 269   2                      Delay_ms(1000); 
+ 270   2                      WTN6_Line_1(Month);
+ 271   2                      Delay_ms(1000);
+ 272   2              }
+ 273   1              {
+ 274   2                      Delay_ms(1000);
+ 275   2                      WTN6_Line_1(Date[5]);
+ 276   2                      
+ 277   2                      Delay_ms(1000); 
+ 278   2                      WTN6_Line_1(Month);
+ 279   2                      Delay_ms(1000);
+ 280   2              }
+ 281   1      //播报日        
+ 282   1              if(Date[6] == 0x00)
+ 283   1              {
+ 284   2                      Delay_ms(1000);
+ 285   2                      WTN6_Line_1(Date[7]);
+ 286   2                      
+ 287   2                      Delay_ms(1000); 
+ 288   2                      WTN6_Line_1(Day);
+ 289   2                      Delay_ms(1000);
+ 290   2              }
+ 291   1              {
+ 292   2                      
+ 293   2                      Delay_ms(1000);                 
+ 294   2                      WTN6_Line_1(Date[6]);
+ 295   2                      
+ 296   2                      Delay_ms(1000);
+ 297   2                      WTN6_Line_1(Date[7]);
+ 298   2                      
+ 299   2                      Delay_ms(1000); 
+ 300   2                      WTN6_Line_1(Day);
+ 301   2                      Delay_ms(1000);
+ 302   2              }
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 6   
+
+ 303   1      }
+ 304          
+ 305          /*
+ 306           *@brief                整点报时
+ 307           *                              播报内容为“现在下午18点整”
+ 308           *@param[in]    Time：需要播报的时间。
+ 309           *                              Time[0]=0x01    上午
+ 310           *                              Time[0]=0x02    下午
+ 311           *                              Time[0]=0x03     晚上
+ 312           *                              例如：下午18点，Date[]={0x02,0x01,0x08}，
+ 313           *@author               MrWeng
+ 314           *@date                 2020-8-7
+ 315           */
+ 316          void WTN6_ReportTime(unsigned char Time[])                                              
+ 317          {
+ 318   1              WTN6_Time_Type OnHour,Mor,Aft,Nig,Now;
+ 319   1              WTN6_Symbol_Type Dot;
+ 320   1              
+ 321   1              OnHour = WTN6_T_O;
+ 322   1              Mor        = WTN6_T_M;
+ 323   1              Aft    = WTN6_T_A;
+ 324   1              Nig    = WTN6_T_N;
+ 325   1              Now        = WTN6_T_Now;
+ 326   1              Dot        = WTN6_S_D;
+ 327   1              
+ 328   1              Delay_ms(1000);                 
+ 329   1              WTN6_Line_1(Now);                               //播报现在
+ 330   1              Delay_ms(1000);
+ 331   1              
+ 332   1              switch(Time[0])
+ 333   1              {
+ 334   2                      case 0x01:
+ 335   2                              Delay_ms(500);                  
+ 336   2                              WTN6_Line_1(Mor);               //播报上午
+ 337   2                              Delay_ms(500);
+ 338   2                      break;
+ 339   2                      case 0x02:
+ 340   2                              Delay_ms(500);                  
+ 341   2                              WTN6_Line_1(Aft);               //播报下午
+ 342   2                              Delay_ms(500);
+ 343   2                      break;
+ 344   2                      case 0x03:
+ 345   2                              Delay_ms(500);                  
+ 346   2                              WTN6_Line_1(Nig);               //播报晚上
+ 347   2                              Delay_ms(500);
+ 348   2                      break;  
+ 349   2              }
+ 350   1      //播报时间
+ 351   1              if(Time[1] == 0x00)
+ 352   1              {
+ 353   2                      Delay_ms(1000);                 
+ 354   2                      WTN6_Line_1(Time[2]);                   
+ 355   2              }else
+ 356   1              {
+ 357   2                      Delay_ms(1000);                 
+ 358   2                      WTN6_Line_1(Time[1]);
+ 359   2                      
+ 360   2                      Delay_ms(1000);                 
+ 361   2                      WTN6_Line_1(Time[2]);   
+ 362   2              }
+ 363   1              
+ 364   1              Delay_ms(1000);
+C51 COMPILER V9.60.0.0   WTN6                                                              08/08/2020 20:49:38 PAGE 7   
+
+ 365   1              WTN6_Line_1(Dot);                       //播报点
+ 366   1              
+ 367   1              Delay_ms(1000);
+ 368   1              WTN6_Line_1(OnHour);                    //播报整
+ 369   1              Delay_ms(1000);
+ 370   1      
+ 371   1      }
+ 372          
+ 373          
+ 374          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    870    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      34
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
