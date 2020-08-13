@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/08/2020  20:49:38  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/13/2020  23:17:07  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -26,8 +26,8 @@ LINK MAP OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0009H     UNIT         _DATA_GROUP_
-                    0011H     000FH                  *** GAP ***
+            DATA    0008H     000BH     UNIT         _DATA_GROUP_
+                    0013H     000DH                  *** GAP ***
             BIT     0020H.0   0000H.1   UNIT         _BIT_GROUP_
                     0020H.1   0000H.7                *** GAP ***
             DATA    0021H     0032H     UNIT         ?DT?MAIN
@@ -35,22 +35,22 @@ LINK MAP OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     00F0H     UNIT         ?PR?_WTN6_REPORTDATE?WTN6
-            CODE    00F3H     00ACH     UNIT         ?PR?_WTN6_REPORTTIME?WTN6
-            CODE    019FH     008CH     UNIT         ?C_C51STARTUP
-            CODE    022BH     0060H     UNIT         ?PR?_WTN6_HUMP?WTN6
-            CODE    028BH     005EH     UNIT         ?PR?_WTN6_LINE_1?WTN6
-            CODE    02E9H     0058H     UNIT         ?PR?_WTN6_TEMP?WTN6
-            CODE    0341H     0053H     UNIT         ?PR?MAIN?MAIN
-            CODE    0394H     0048H     UNIT         ?PR?_WTN6_NUM?WTN6
-            CODE    03DCH     0046H     UNIT         ?C?LIB_CODE
-            CODE    0422H     0041H     UNIT         ?C_INITSEG
-            CODE    0463H     001DH     UNIT         ?PR?_DELAY_MS?WTN6
-            CODE    0480H     0019H     UNIT         ?PR?_DELAY_US?WTN6
-            CODE    0499H     0015H     UNIT         ?PR?WTN6_INCALL?WTN6
-            CODE    04AEH     0011H     UNIT         ?PR?WTN6_RING?WTN6
-            CODE    04BFH     0009H     UNIT         ?PR?DELAY1MS?WTN6
-            CODE    04C8H     0007H     UNIT         ?PR?DELAY1US?WTN6
+            CODE    0003H     0101H     UNIT         ?PR?_WTN6_REPORTDATE?WTN6
+            CODE    0104H     00BDH     UNIT         ?PR?_WTN6_REPORTTIME?WTN6
+            CODE    01C1H     009DH     UNIT         ?PR?_WTN6_HUMP?WTN6
+            CODE    025EH     0099H     UNIT         ?PR?_WTN6_TEMP?WTN6
+            CODE    02F7H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0383H     005BH     UNIT         ?PR?_WTN6_LINE_1?WTN6
+            CODE    03DEH     0053H     UNIT         ?PR?MAIN?MAIN
+            CODE    0431H     0046H     UNIT         ?C?LIB_CODE
+            CODE    0477H     0041H     UNIT         ?C_INITSEG
+            CODE    04B8H     003DH     UNIT         ?PR?_WTN6_NUM?WTN6
+            CODE    04F5H     001DH     UNIT         ?PR?_DELAY_MS?WTN6
+            CODE    0512H     0019H     UNIT         ?PR?_DELAY_US?WTN6
+            CODE    052BH     0011H     UNIT         ?PR?WTN6_RING?WTN6
+            CODE    053CH     0011H     UNIT         ?PR?WTN6_INCALL?WTN6
+            CODE    054DH     0009H     UNIT         ?PR?DELAY1MS?WTN6
+            CODE    0556H     0007H     UNIT         ?PR?DELAY1US?WTN6
 
 
 
@@ -59,7 +59,7 @@ OVERLAY MAP OF MODULE:   .\Objects\STC8-WTN6 (?C_STARTUP)
 
 SEGMENT                              BIT_GROUP          DATA_GROUP 
   +--> CALLED SEGMENT             START    LENGTH     START    LENGTH
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 2
 
 
 ---------------------------------------------------------------------
@@ -83,18 +83,18 @@ SEGMENT                              BIT_GROUP          DATA_GROUP
 ?PR?_DELAY_MS?WTN6                -----    -----      -----    -----
   +--> ?PR?DELAY1MS?WTN6
 
-?PR?_WTN6_LINE_1?WTN6             0020H.0  0000H.1    0010H    0001H
+?PR?_WTN6_LINE_1?WTN6             0020H.0  0000H.1    0012H    0001H
   +--> ?PR?_DELAY_MS?WTN6
   +--> ?PR?_DELAY_US?WTN6
 
 ?PR?_DELAY_US?WTN6                -----    -----      -----    -----
   +--> ?PR?DELAY1US?WTN6
 
-?PR?_WTN6_TEMP?WTN6               -----    -----      0008H    0005H
+?PR?_WTN6_TEMP?WTN6               -----    -----      0008H    0006H
   +--> ?PR?_DELAY_MS?WTN6
   +--> ?PR?_WTN6_LINE_1?WTN6
 
-?PR?_WTN6_HUMP?WTN6               -----    -----      0008H    0005H
+?PR?_WTN6_HUMP?WTN6               -----    -----      0008H    0006H
   +--> ?PR?_DELAY_MS?WTN6
   +--> ?PR?_WTN6_LINE_1?WTN6
 
@@ -106,11 +106,11 @@ SEGMENT                              BIT_GROUP          DATA_GROUP
   +--> ?PR?_DELAY_MS?WTN6
   +--> ?PR?_WTN6_LINE_1?WTN6
 
-?PR?_WTN6_REPORTDATE?WTN6         -----    -----      0008H    0008H
+?PR?_WTN6_REPORTDATE?WTN6         -----    -----      0008H    000AH
   +--> ?PR?_DELAY_MS?WTN6
   +--> ?PR?_WTN6_LINE_1?WTN6
 
-?PR?_WTN6_REPORTTIME?WTN6         -----    -----      0008H    0008H
+?PR?_WTN6_REPORTTIME?WTN6         -----    -----      0008H    000AH
   +--> ?PR?_DELAY_MS?WTN6
   +--> ?PR?_WTN6_LINE_1?WTN6
 
@@ -119,13 +119,13 @@ SEGMENT                              BIT_GROUP          DATA_GROUP
 SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
 
   VALUE           TYPE          NAME
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 3
 
 
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:019FH         SEGMENT       ?C_C51STARTUP
+  C:02F7H         SEGMENT       ?C_C51STARTUP
   I:0053H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
@@ -135,7 +135,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:01A2H         SYMBOL        IDATALOOP
+  C:02FAH         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -144,18 +144,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:019FH         SYMBOL        STARTUP1
+  C:02F7H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:019FH         LINE#         133
-  C:01A1H         LINE#         134
-  C:01A2H         LINE#         135
-  C:01A3H         LINE#         136
-  C:01A5H         LINE#         185
-  C:01A8H         LINE#         196
+  C:02F7H         LINE#         133
+  C:02F9H         LINE#         134
+  C:02FAH         LINE#         135
+  C:02FBH         LINE#         136
+  C:02FDH         LINE#         185
+  C:0300H         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        WTN6
@@ -165,125 +165,123 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   D:00C0H         PUBLIC        P4
-  C:04BFH         PUBLIC        Delay1ms
+  C:054DH         PUBLIC        Delay1ms
   D:00C8H         PUBLIC        P5
   D:00E8H         PUBLIC        P6
   D:00F8H         PUBLIC        P7
-  C:04C8H         PUBLIC        Delay1us
+  C:0556H         PUBLIC        Delay1us
   D:00A8H         PUBLIC        IE
   C:0003H         PUBLIC        _WTN6_ReportDate
   D:00B8H         PUBLIC        IP
-  C:00F3H         PUBLIC        _WTN6_ReportTime
-  C:04AEH         PUBLIC        WTN6_Ring
+  C:0104H         PUBLIC        _WTN6_ReportTime
+  C:052BH         PUBLIC        WTN6_Ring
   D:00D8H         PUBLIC        CCON
-  C:02E9H         PUBLIC        _WTN6_Temp
-  C:0298H         SYMBOL        _WTN6_Line_1
+  C:025EH         PUBLIC        _WTN6_Temp
+  C:038DH         SYMBOL        _WTN6_Line_1
   B:00C8H.0       PUBLIC        WNT6_DATA
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 4
 
 
-  C:022BH         PUBLIC        _WTN6_Hump
-  C:0467H         PUBLIC        _Delay_ms
+  C:01C1H         PUBLIC        _WTN6_Hump
+  C:04F9H         PUBLIC        _Delay_ms
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0480H         PUBLIC        _Delay_us
-  C:0394H         PUBLIC        _WTN6_Num
-  C:0499H         PUBLIC        WTN6_InCall
+  C:0512H         PUBLIC        _Delay_us
+  C:04B8H         PUBLIC        _WTN6_Num
+  C:053CH         PUBLIC        WTN6_InCall
   D:00D0H         PUBLIC        PSW
   -------         PROC          DELAY1US
   -------         DO            
   D:0007H         SYMBOL        i
   -------         ENDDO         
-  C:04C8H         LINE#         10
-  C:04C8H         LINE#         11
-  C:04C8H         LINE#         14
-  C:04C9H         LINE#         15
-  C:04CAH         LINE#         16
-  C:04CCH         LINE#         17
-  C:04CEH         LINE#         18
+  C:0556H         LINE#         10
+  C:0556H         LINE#         11
+  C:0556H         LINE#         14
+  C:0557H         LINE#         15
+  C:0558H         LINE#         16
+  C:055AH         LINE#         17
+  C:055CH         LINE#         18
   -------         ENDPROC       DELAY1US
   -------         PROC          _DELAY_US
   D:0004H         SYMBOL        us
   -------         DO            
   D:0002H         SYMBOL        i
   -------         ENDDO         
-  C:0480H         LINE#         27
-  C:0484H         LINE#         28
-  C:0484H         LINE#         30
-  C:048EH         LINE#         31
-  C:0498H         LINE#         32
+  C:0512H         LINE#         27
+  C:0516H         LINE#         28
+  C:0516H         LINE#         30
+  C:0520H         LINE#         31
+  C:052AH         LINE#         32
   -------         ENDPROC       _DELAY_US
   -------         PROC          DELAY1MS
   -------         DO            
   D:0007H         SYMBOL        i
   D:0006H         SYMBOL        j
   -------         ENDDO         
-  C:04BFH         LINE#         41
-  C:04BFH         LINE#         42
-  C:04BFH         LINE#         45
-  C:04C1H         LINE#         46
-  C:04C3H         LINE#         48
-  C:04C3H         LINE#         49
-  C:04C5H         LINE#         50
-  C:04C7H         LINE#         51
+  C:054DH         LINE#         41
+  C:054DH         LINE#         42
+  C:054DH         LINE#         45
+  C:054FH         LINE#         46
+  C:0551H         LINE#         48
+  C:0551H         LINE#         49
+  C:0553H         LINE#         50
+  C:0555H         LINE#         51
   -------         ENDPROC       DELAY1MS
-  C:0463H         SYMBOL        L?0054
-  -------         PROC          L?0053
-  -------         ENDPROC       L?0053
-  C:0463H         SYMBOL        L?0054
+  C:04F5H         SYMBOL        L?0086
+  -------         PROC          L?0085
+  -------         ENDPROC       L?0085
+  C:04F5H         SYMBOL        L?0086
   -------         PROC          _DELAY_MS
   D:0004H         SYMBOL        ms
   -------         DO            
   D:0002H         SYMBOL        i
   -------         ENDDO         
-  C:0467H         LINE#         60
-  C:046BH         LINE#         61
-  C:046BH         LINE#         63
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 5
+  C:04F9H         LINE#         60
+  C:04FDH         LINE#         61
+  C:04FDH         LINE#         63
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 5
 
 
-  C:0475H         LINE#         64
-  C:047FH         LINE#         65
+  C:0507H         LINE#         64
+  C:0511H         LINE#         65
   -------         ENDPROC       _DELAY_MS
-  C:028EH         SYMBOL        L?0056
-  C:0294H         SYMBOL        L?0057
-  -------         PROC          L?0055
-  -------         ENDPROC       L?0055
-  C:028EH         SYMBOL        L?0056
-  C:0294H         SYMBOL        L?0057
+  C:0389H         SYMBOL        L?0088
+  -------         PROC          L?0087
+  -------         ENDPROC       L?0087
+  C:0389H         SYMBOL        L?0088
   -------         PROC          _WTN6_LINE_1
   D:0007H         SYMBOL        Send_DATA
   -------         DO            
-  D:0010H         SYMBOL        S_DATA
+  D:0012H         SYMBOL        S_DATA
   D:0001H         SYMBOL        j
   B:0020H.0       SYMBOL        B_DATA
   -------         ENDDO         
-  C:0298H         LINE#         74
-  C:0298H         LINE#         75
-  C:0298H         LINE#         78
-  C:029AH         LINE#         79
-  C:029CH         LINE#         80
-  C:02A3H         LINE#         81
-  C:02A8H         LINE#         82
-  C:02B4H         LINE#         83
-  C:02B4H         LINE#         84
-  C:02B7H         LINE#         85
-  C:02B7H         LINE#         86
-  C:02B9H         LINE#         87
-  C:02C0H         LINE#         88
-  C:02C2H         LINE#         89
-  C:02C6H         LINE#         90
-  C:02C8H         LINE#         92
-  C:02C8H         LINE#         93
-  C:02CAH         LINE#         94
-  C:02D1H         LINE#         95
-  C:02D3H         LINE#         96
-  C:02DAH         LINE#         97
-  C:02DAH         LINE#         98
-  C:02E0H         LINE#         99
-  C:02E3H         LINE#         100
-  C:02E6H         LINE#         101
-  C:02E8H         LINE#         102
+  C:038DH         LINE#         74
+  C:038DH         LINE#         75
+  C:038DH         LINE#         78
+  C:038FH         LINE#         79
+  C:0391H         LINE#         80
+  C:0398H         LINE#         81
+  C:039DH         LINE#         82
+  C:03A9H         LINE#         83
+  C:03A9H         LINE#         84
+  C:03ACH         LINE#         85
+  C:03ACH         LINE#         86
+  C:03AEH         LINE#         87
+  C:03B5H         LINE#         88
+  C:03B7H         LINE#         89
+  C:03BBH         LINE#         90
+  C:03BDH         LINE#         92
+  C:03BDH         LINE#         93
+  C:03BFH         LINE#         94
+  C:03C6H         LINE#         95
+  C:03C8H         LINE#         96
+  C:03CFH         LINE#         97
+  C:03CFH         LINE#         98
+  C:03D5H         LINE#         99
+  C:03D8H         LINE#         100
+  C:03DBH         LINE#         101
+  C:03DDH         LINE#         102
   -------         ENDPROC       _WTN6_LINE_1
   -------         PROC          _WTN6_NUM
   D:0008H         SYMBOL        Num
@@ -291,93 +289,145 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   -------         DO            
   D:000DH         SYMBOL        i
   -------         ENDDO         
-  C:0394H         LINE#         111
-  C:039EH         LINE#         112
-  C:039EH         LINE#         114
-  C:03B4H         LINE#         115
-  C:03B4H         LINE#         116
-  C:03BBH         LINE#         117
-  C:03CAH         LINE#         118
-  C:03D1H         LINE#         119
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 6
-
-
-  C:03DBH         LINE#         120
+  C:04B8H         LINE#         111
+  C:04C2H         LINE#         112
+  C:04C2H         LINE#         114
+  C:04D8H         LINE#         115
+  C:04D8H         LINE#         116
+  C:04DBH         LINE#         117
+  C:04EAH         LINE#         118
+  C:04F4H         LINE#         119
   -------         ENDPROC       _WTN6_NUM
   -------         PROC          _WTN6_TEMP
-  D:0008H         SYMBOL        Num
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 6
+
+
+  D:0008H         SYMBOL        Temp
   -------         DO            
   D:0001H         SYMBOL        temp
-  D:000BH         SYMBOL        Celsius
+  D:000BH         SYMBOL        Deg
   D:000CH         SYMBOL        Dot
+  D:000DH         SYMBOL        Ten
   -------         ENDDO         
-  C:02E9H         LINE#         129
-  C:02EFH         LINE#         130
-  C:02EFH         LINE#         134
-  C:02F1H         LINE#         135
-  C:02F4H         LINE#         136
-  C:02F7H         LINE#         139
-  C:02FAH         LINE#         140
-  C:02FFH         LINE#         142
-  C:0306H         LINE#         143
-  C:0313H         LINE#         145
-  C:0316H         LINE#         146
-  C:0322H         LINE#         148
-  C:0325H         LINE#         149
-  C:032AH         LINE#         151
-  C:032DH         LINE#         152
-  C:0339H         LINE#         154
-  C:033CH         LINE#         155
+  C:025EH         LINE#         128
+  C:0264H         LINE#         129
+  C:0264H         LINE#         134
+  C:0266H         LINE#         135
+  C:0269H         LINE#         136
+  C:026CH         LINE#         137
+  C:026FH         LINE#         140
+  C:0272H         LINE#         141
+  C:0277H         LINE#         142
+  C:027AH         LINE#         144
+  C:0289H         LINE#         145
+  C:0289H         LINE#         146
+  C:0289H         LINE#         147
+  C:0289H         LINE#         148
+  C:0289H         LINE#         149
+  C:028BH         LINE#         150
+  C:028BH         LINE#         151
+  C:028EH         LINE#         152
+  C:0293H         LINE#         153
+  C:02A1H         LINE#         154
+  C:02A1H         LINE#         155
+  C:02A1H         LINE#         156
+  C:02A1H         LINE#         157
+  C:02A1H         LINE#         158
+  C:02A3H         LINE#         159
+  C:02A3H         LINE#         160
+  C:02A6H         LINE#         161
+  C:02B3H         LINE#         163
+  C:02B6H         LINE#         164
+  C:02BBH         LINE#         165
+  C:02C9H         LINE#         166
+  C:02C9H         LINE#         167
+  C:02CCH         LINE#         168
+  C:02D8H         LINE#         169
+  C:02D8H         LINE#         170
+  C:02D8H         LINE#         178
+  C:02DBH         LINE#         179
+  C:02E0H         LINE#         181
+  C:02E3H         LINE#         182
+  C:02EFH         LINE#         184
+  C:02F2H         LINE#         185
   -------         ENDPROC       _WTN6_TEMP
   -------         PROC          _WTN6_HUMP
-  D:0008H         SYMBOL        Num
+  D:0008H         SYMBOL        Hump
   -------         DO            
   D:0001H         SYMBOL        hum
   D:000BH         SYMBOL        Per_Cent
   D:000CH         SYMBOL        Dot
+  D:000DH         SYMBOL        Ten
   -------         ENDDO         
-  C:022BH         LINE#         166
-  C:0231H         LINE#         167
-  C:0231H         LINE#         171
-  C:0233H         LINE#         172
-  C:0236H         LINE#         173
-  C:0239H         LINE#         176
-  C:023CH         LINE#         177
-  C:0241H         LINE#         179
-  C:0248H         LINE#         180
-  C:024DH         LINE#         182
-  C:0254H         LINE#         183
-  C:0261H         LINE#         185
-  C:0264H         LINE#         186
-  C:0270H         LINE#         188
-  C:0273H         LINE#         189
-  C:0278H         LINE#         191
-  C:027BH         LINE#         192
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 7
+
+
+  C:01C1H         LINE#         196
+  C:01C7H         LINE#         197
+  C:01C7H         LINE#         201
+  C:01C9H         LINE#         202
+  C:01CCH         LINE#         203
+  C:01CFH         LINE#         204
+  C:01D2H         LINE#         207
+  C:01D5H         LINE#         208
+  C:01DAH         LINE#         210
+  C:01DDH         LINE#         211
+  C:01E2H         LINE#         212
+  C:01E5H         LINE#         215
+  C:01F4H         LINE#         216
+  C:01F4H         LINE#         217
+  C:01F4H         LINE#         218
+  C:01F4H         LINE#         219
+  C:01F4H         LINE#         220
+  C:01F6H         LINE#         221
+  C:01F6H         LINE#         222
+  C:01F9H         LINE#         223
+  C:01FEH         LINE#         225
+  C:020CH         LINE#         226
+  C:020CH         LINE#         227
+  C:020CH         LINE#         228
+  C:020CH         LINE#         229
+  C:020CH         LINE#         230
+  C:020EH         LINE#         231
+  C:020EH         LINE#         232
+  C:0211H         LINE#         233
+  C:021EH         LINE#         235
+  C:0221H         LINE#         236
+  C:0226H         LINE#         238
+  C:0234H         LINE#         239
+  C:0234H         LINE#         240
+  C:0237H         LINE#         241
+  C:0243H         LINE#         242
+  C:0243H         LINE#         243
+  C:0243H         LINE#         246
+  C:0246H         LINE#         247
+  C:024BH         LINE#         249
+  C:024EH         LINE#         250
   -------         ENDPROC       _WTN6_HUMP
   -------         PROC          WTN6_RING
   -------         DO            
   D:0001H         SYMBOL        ring
   -------         ENDDO         
-  C:04AEH         LINE#         201
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 7
-
-
-  C:04AEH         LINE#         202
-  C:04AEH         LINE#         204
-  C:04B0H         LINE#         205
-  C:04B3H         LINE#         206
-  C:04B8H         LINE#         207
+  C:052BH         LINE#         259
+  C:052BH         LINE#         260
+  C:052BH         LINE#         262
+  C:052DH         LINE#         263
+  C:0530H         LINE#         264
+  C:0535H         LINE#         265
   -------         ENDPROC       WTN6_RING
   -------         PROC          WTN6_INCALL
   -------         DO            
   D:0001H         SYMBOL        ring
   -------         ENDDO         
-  C:0499H         LINE#         217
-  C:0499H         LINE#         218
-  C:0499H         LINE#         220
-  C:049BH         LINE#         221
-  C:04A2H         LINE#         222
-  C:04A7H         LINE#         223
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 8
+
+
+  C:053CH         LINE#         275
+  C:053CH         LINE#         276
+  C:053CH         LINE#         278
+  C:053EH         LINE#         279
+  C:0541H         LINE#         280
+  C:0546H         LINE#         281
   -------         ENDPROC       WTN6_INCALL
   -------         PROC          _WTN6_REPORTDATE
   D:0008H         SYMBOL        Date
@@ -387,61 +437,81 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   D:000DH         SYMBOL        Year
   D:000EH         SYMBOL        Month
   D:000FH         SYMBOL        Day
+  D:0010H         SYMBOL        Is
+  D:0011H         SYMBOL        Ten
   -------         ENDDO         
-  C:0003H         LINE#         234
-  C:0009H         LINE#         235
-  C:0009H         LINE#         240
-  C:000BH         LINE#         241
-  C:000EH         LINE#         242
-  C:0011H         LINE#         243
-  C:0014H         LINE#         245
-  C:0017H         LINE#         246
-  C:001CH         LINE#         247
-  C:001FH         LINE#         250
-  C:0024H         LINE#         251
-  C:0024H         LINE#         252
-  C:002BH         LINE#         253
-  C:003AH         LINE#         254
-  C:0041H         LINE#         255
-  C:0054H         LINE#         257
-  C:005BH         LINE#         258
-  C:0060H         LINE#         259
-  C:0063H         LINE#         261
-  C:0073H         LINE#         262
-  C:0073H         LINE#         263
-  C:0076H         LINE#         264
-  C:007CH         LINE#         266
-  C:007FH         LINE#         267
-  C:0082H         LINE#         269
-  C:0085H         LINE#         270
-  C:008AH         LINE#         271
-  C:008DH         LINE#         272
-  C:008DH         LINE#         273
-  C:008DH         LINE#         274
-  C:0090H         LINE#         275
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 8
+  C:0003H         LINE#         292
+  C:0009H         LINE#         293
+  C:0009H         LINE#         300
+  C:000BH         LINE#         301
+  C:000EH         LINE#         302
+  C:0011H         LINE#         303
+  C:0014H         LINE#         304
+  C:0017H         LINE#         305
+  C:001AH         LINE#         307
+  C:001DH         LINE#         308
+  C:0022H         LINE#         310
+  C:0025H         LINE#         311
+  C:002AH         LINE#         314
+  C:002FH         LINE#         315
+  C:002FH         LINE#         316
+  C:0032H         LINE#         317
+  C:0041H         LINE#         318
+  C:0054H         LINE#         320
+  C:0057H         LINE#         321
+  C:005CH         LINE#         324
+  C:006EH         LINE#         325
+  C:006EH         LINE#         326
+  C:006EH         LINE#         327
+  C:006EH         LINE#         328
+  C:006EH         LINE#         329
+  C:0070H         LINE#         330
+  C:0070H         LINE#         331
+  C:0073H         LINE#         332
+  C:0078H         LINE#         333
+  C:0086H         LINE#         334
+  C:0086H         LINE#         335
+  C:0086H         LINE#         336
+  C:0086H         LINE#         337
+  C:0086H         LINE#         338
+  C:0088H         LINE#         339
+  C:0088H         LINE#         340
+  C:008BH         LINE#         341
+  C:0091H         LINE#         342
+  C:0094H         LINE#         343
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 9
 
 
-  C:0093H         LINE#         277
-  C:0096H         LINE#         278
-  C:009BH         LINE#         279
-  C:009EH         LINE#         280
-  C:009EH         LINE#         282
-  C:00ACH         LINE#         283
-  C:00ACH         LINE#         284
-  C:00AFH         LINE#         285
-  C:00BBH         LINE#         287
-  C:00BEH         LINE#         288
-  C:00C3H         LINE#         289
-  C:00C6H         LINE#         290
-  C:00C6H         LINE#         291
-  C:00C6H         LINE#         293
-  C:00C9H         LINE#         294
-  C:00D5H         LINE#         296
-  C:00D8H         LINE#         297
-  C:00E4H         LINE#         299
-  C:00E7H         LINE#         300
-  C:00ECH         LINE#         301
+  C:0099H         LINE#         344
+  C:009CH         LINE#         345
+  C:00A2H         LINE#         346
+  C:00A2H         LINE#         348
+  C:00A5H         LINE#         349
+  C:00AAH         LINE#         352
+  C:00BCH         LINE#         353
+  C:00BCH         LINE#         354
+  C:00BCH         LINE#         355
+  C:00BCH         LINE#         356
+  C:00BCH         LINE#         357
+  C:00BEH         LINE#         358
+  C:00BEH         LINE#         359
+  C:00C1H         LINE#         360
+  C:00C6H         LINE#         361
+  C:00D4H         LINE#         362
+  C:00D4H         LINE#         363
+  C:00D4H         LINE#         364
+  C:00D4H         LINE#         365
+  C:00D4H         LINE#         366
+  C:00D6H         LINE#         367
+  C:00D6H         LINE#         368
+  C:00D9H         LINE#         369
+  C:00E5H         LINE#         371
+  C:00E8H         LINE#         372
+  C:00EDH         LINE#         374
+  C:00F0H         LINE#         375
+  C:00FCH         LINE#         376
+  C:00FCH         LINE#         378
+  C:00FFH         LINE#         379
   -------         ENDPROC       _WTN6_REPORTDATE
   -------         PROC          _WTN6_REPORTTIME
   D:0008H         SYMBOL        Time
@@ -452,55 +522,70 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   D:000EH         SYMBOL        Nig
   D:0001H         SYMBOL        Now
   D:000FH         SYMBOL        Dot
+  D:0010H         SYMBOL        Is
+  D:0011H         SYMBOL        Ten
   -------         ENDDO         
-  C:00F3H         LINE#         316
-  C:00F9H         LINE#         317
-  C:00F9H         LINE#         321
-  C:00FCH         LINE#         322
-  C:00FFH         LINE#         323
-  C:0102H         LINE#         324
-  C:0105H         LINE#         325
-  C:0107H         LINE#         326
-  C:010AH         LINE#         328
-  C:010DH         LINE#         329
-  C:0112H         LINE#         330
-  C:0115H         LINE#         332
-  C:0129H         LINE#         333
-  C:0129H         LINE#         334
-  C:0129H         LINE#         335
-  C:0130H         LINE#         336
-  C:0132H         LINE#         337
-  C:0132H         LINE#         338
-  C:0134H         LINE#         339
-  C:0134H         LINE#         340
-  C:013BH         LINE#         341
-  C:013DH         LINE#         342
-  C:013DH         LINE#         343
-  C:013FH         LINE#         344
-  C:013FH         LINE#         345
-  C:0146H         LINE#         346
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 9
+  C:0104H         LINE#         393
+  C:010AH         LINE#         394
+  C:010AH         LINE#         399
+  C:010DH         LINE#         400
+  C:0110H         LINE#         401
+  C:0113H         LINE#         402
+  C:0116H         LINE#         403
+  C:0118H         LINE#         404
+  C:011BH         LINE#         405
+  C:011EH         LINE#         406
+  C:0121H         LINE#         408
+  C:0124H         LINE#         409
+  C:0129H         LINE#         410
+  C:012CH         LINE#         412
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 10
 
 
-  C:014BH         LINE#         347
-  C:0152H         LINE#         348
-  C:0152H         LINE#         349
-  C:0152H         LINE#         351
-  C:0164H         LINE#         352
-  C:0164H         LINE#         353
-  C:0164H         LINE#         354
-  C:0164H         LINE#         355
-  C:0166H         LINE#         356
-  C:0166H         LINE#         357
-  C:0169H         LINE#         358
-  C:0175H         LINE#         360
-  C:017CH         LINE#         361
-  C:0188H         LINE#         362
-  C:0188H         LINE#         364
-  C:018BH         LINE#         365
-  C:0190H         LINE#         367
-  C:0193H         LINE#         368
-  C:0198H         LINE#         369
+  C:012FH         LINE#         413
+  C:0134H         LINE#         415
+  C:0148H         LINE#         416
+  C:0148H         LINE#         417
+  C:0148H         LINE#         418
+  C:014AH         LINE#         419
+  C:014AH         LINE#         420
+  C:014CH         LINE#         421
+  C:014CH         LINE#         422
+  C:014EH         LINE#         423
+  C:014EH         LINE#         424
+  C:0150H         LINE#         425
+  C:0150H         LINE#         426
+  C:0155H         LINE#         427
+  C:0158H         LINE#         428
+  C:0158H         LINE#         429
+  C:0158H         LINE#         431
+  C:016AH         LINE#         432
+  C:016AH         LINE#         433
+  C:016AH         LINE#         434
+  C:016AH         LINE#         435
+  C:016AH         LINE#         436
+  C:016CH         LINE#         437
+  C:016CH         LINE#         438
+  C:016FH         LINE#         439
+  C:0174H         LINE#         440
+  C:0182H         LINE#         441
+  C:0182H         LINE#         442
+  C:0182H         LINE#         443
+  C:0182H         LINE#         444
+  C:0182H         LINE#         445
+  C:0184H         LINE#         446
+  C:0184H         LINE#         447
+  C:0187H         LINE#         448
+  C:0193H         LINE#         450
+  C:0196H         LINE#         451
+  C:019BH         LINE#         453
+  C:019EH         LINE#         454
+  C:01AAH         LINE#         456
+  C:01AAH         LINE#         458
+  C:01ADH         LINE#         459
+  C:01B2H         LINE#         461
+  C:01B5H         LINE#         462
+  C:01BAH         LINE#         463
   -------         ENDPROC       _WTN6_REPORTTIME
   -------         ENDMOD        WTN6
 
@@ -514,6 +599,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   D:00C0H         PUBLIC        P4
   D:00C8H         PUBLIC        P5
   D:00E8H         PUBLIC        P6
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/13/2020  23:17:07  PAGE 11
+
+
   D:00F8H         PUBLIC        P7
   D:00A8H         PUBLIC        IE
   D:0029H         PUBLIC        Time
@@ -521,7 +609,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   D:00B8H         PUBLIC        IP
   D:002FH         PUBLIC        Hump
   D:00D8H         PUBLIC        CCON
-  C:0341H         PUBLIC        main
+  C:03DEH         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:0032H         PUBLIC        Phone_Number
@@ -529,33 +617,28 @@ SYMBOL TABLE OF MODULE:  .\Objects\STC8-WTN6 (?C_STARTUP)
   D:0049H         PUBLIC        Number
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:0341H         LINE#         13
-  C:0341H         LINE#         14
-  C:0341H         LINE#         16
-  C:034EH         LINE#         17
-  C:035BH         LINE#         18
-  C:0364H         LINE#         19
-  C:036DH         LINE#         20
-  C:0370H         LINE#         21
-  C:037DH         LINE#         22
-  C:0380H         LINE#         23
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2020  20:49:38  PAGE 10
-
-
-  C:0389H         LINE#         24
-  C:0392H         LINE#         26
-  C:0392H         LINE#         27
-  C:0392H         LINE#         29
+  C:03DEH         LINE#         13
+  C:03DEH         LINE#         14
+  C:03DEH         LINE#         16
+  C:03EBH         LINE#         17
+  C:03F8H         LINE#         18
+  C:0401H         LINE#         19
+  C:040AH         LINE#         20
+  C:040DH         LINE#         21
+  C:041AH         LINE#         22
+  C:041DH         LINE#         23
+  C:0426H         LINE#         24
+  C:042FH         LINE#         26
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
   -------         MODULE        ?C?CLDPTR
-  C:03DCH         PUBLIC        ?C?CLDPTR
+  C:0431H         PUBLIC        ?C?CLDPTR
   -------         ENDMOD        ?C?CLDPTR
 
   -------         MODULE        ?C?CLDOPTR
-  C:03F5H         PUBLIC        ?C?CLDOPTR
+  C:044AH         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
 
-Program Size: data=68.1 xdata=0 code=1231
+Program Size: data=70.1 xdata=0 code=1373
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

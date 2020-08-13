@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              08/08/2020 20:49:38 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              08/13/2020 23:17:07 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -14,10 +14,10 @@ line level    source
    4          unsigned char Number[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09};//数字0-9
    5          unsigned char Phone_Number[]={0x01,0x08,0x06,0x08,0x05,0x08,0x05,0x08,0x09,0x02,0x01};//电话号码
    6          unsigned char Ring_Number[]={0x00,0x08,0x05,0x01,0x08,0x08,0x02,0x03,0x03,0x05,0x01,0x08};//座机号码
-   7          unsigned char Temp[]={0x02,0x08,0x05};//温度28.5度
-   8          unsigned char Hump[]={0x07,0x08,0x05};//湿度28.5%
-   9          unsigned char Date[]={0x02,0x00,0x02,0x00,0x00,0x08,0x02,0x08};//日期，今天2020年8月8日
-  10          unsigned char Time[]={0x01,0x01,0x08};//现在上午，18点整
+   7          unsigned char Temp[]={0x01,0x0,0x05};//温度28.5度
+   8          unsigned char Hump[]={0x00,0x00,0x05};//湿度28.5%
+   9          unsigned char Date[]={0x02,0x00,0x02,0x00,0x00,0x01,0x00,0x01};//日期，今天是2020年8月8日
+  10          unsigned char Time[]={0x03,0x01,0x09};//现在上午，18点整
   11          
   12          
   13          void main()
@@ -33,12 +33,10 @@ line level    source
   23   1              WTN6_ReportDate(Date);
   24   1              WTN6_ReportTime(Time);
   25   1              
-  26   1              while(1)
-  27   1              {
-  28   2                      
-  29   2              }
-  30   1      }
-  31          
+  26   1              while(1);
+  27   1      
+  28   1      }
+  29          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
